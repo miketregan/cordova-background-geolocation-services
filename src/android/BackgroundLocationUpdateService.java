@@ -202,6 +202,11 @@ public class BackgroundLocationUpdateService
               builder.setLargeIcon(scaledBm);
             }
 
+            Integer resId = getPluginResource("android_small");
+            if (resId != 0) {
+                builder.setSmallIcon(resId);
+            }
+
             // Integer resId = getPluginResource("location_icon");
             //
             // //Scale our location_icon.png for different phone resolutions
