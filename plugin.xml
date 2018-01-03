@@ -59,18 +59,18 @@
         
         <preference name="LOCATION_ALWAYS_USAGE_DESCRIPTION" default="Would Like to Use Your Current Location Even In Background." />
         <config-file target="*-Info.plist" parent="NSLocationAlwaysUsageDescription">
-            <string>${LOCATION_ALWAYS_USAGE_DESCRIPTION}</string>
+            <string>$LOCATION_ALWAYS_USAGE_DESCRIPTION</string>
         </config-file>
 
         <preference name="LOCATION_WHEN_IN_USE_DESCRIPTION" default="Would Like to Use Your Current Location Even In Background." />
         <config-file target="*-Info.plist" parent="NSLocationWhenInUseUsageDescription">
-            <string>${LOCATION_WHEN_IN_USE_DESCRIPTION}</string>
+            <string>$LOCATION_WHEN_IN_USE_DESCRIPTION</string>
         </config-file>
         
         <!-- Usage description of Motion, mandatory since iOS 10 -->
         <preference name="MOTION_USAGE_DESCRIPTION" default="Would Like to Use Motion Data." />
         <config-file target="*-Info.plist" parent="NSMotionUsageDescription">
-            <string>${MOTION_USAGE_DESCRIPTION}</string>
+            <string>$MOTION_USAGE_DESCRIPTION</string>
         </config-file>
         
         <config-file target="*-Info.plist" parent="UIBackgroundModes">
