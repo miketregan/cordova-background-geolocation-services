@@ -274,7 +274,7 @@ class LocationManager : NSObject, CLLocationManagerDelegate {
         // New property required for iOS 9 to get location updates in background:
         // http://stackoverflow.com/questions/30808192/allowsbackgroundlocationupdates-in-cllocationmanager-in-ios9
         if #available(iOS 9, *) {
-            self.manager.allowsBackgroundLocationUpdates = true;
+            //self.manager.allowsBackgroundLocationUpdates = true;
         }
     }
 
