@@ -375,7 +375,7 @@ class LocationManager : NSObject, CLLocationManagerDelegate {
             self.manager.desiredAccuracy = self.lowPowerMode ? kCLLocationAccuracyThreeKilometers : desiredAccuracy;
             self.manager.distanceFilter = self.lowPowerMode ? 10.0 : distanceFilter;
 
-            self.manager.startUpdatingLocation();
+            //self.manager.startUpdatingLocation();
             self.manager.startMonitoringSignificantLocationChanges();
 
             taskManager.beginNewBackgroundTask();
@@ -400,7 +400,7 @@ class LocationManager : NSObject, CLLocationManagerDelegate {
             stopUpdateTimer = nil;
         }
 
-        self.manager.stopUpdatingLocation();
+        //self.manager.stopUpdatingLocation();
         self.manager.stopMonitoringSignificantLocationChanges();
     }
 
