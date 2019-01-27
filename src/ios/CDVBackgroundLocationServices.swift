@@ -119,7 +119,7 @@ var locationCommandDelegate:CDVCommandDelegate?;
     open func requestCurrentLocation(_ command: CDVInvokedUrlCommand) {
         log(message: "requestCurrentLocation");   
 
-        locationManager.requestLocation();
+        locationManager.requestCurrentLocation();
 
         let pluginResult = CDVPluginResult(status: CDVCommandStatus_OK)
         commandDelegate!.send(pluginResult, callbackId:command.callbackId) 
@@ -263,7 +263,7 @@ class LocationManager : NSObject, CLLocationManagerDelegate {
         self.manager.stopMonitoringSignificantLocationChanges();
     }
 
-    func requestLocation() {
+    func requestCurrentLocation() {
         self.manager.requestLocation();
     }
 
