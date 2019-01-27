@@ -116,6 +116,15 @@ var locationCommandDelegate:CDVCommandDelegate?;
         locationCommandDelegate = commandDelegate;
     }
 
+    open func requestCurrentLocation(_ command: CDVInvokedUrlCommand) {
+        log(message: "requestCurrentLocation");   
+
+        locationManager.requestLocation();
+
+        let pluginResult = CDVPluginResult(status: CDVCommandStatus_OK)
+        commandDelegate!.send(pluginResult, callbackId:command.callbackId) 
+    }
+
     open func start(_ command: CDVInvokedUrlCommand) {
         log(message: "Started");
         enabled = true;
@@ -252,6 +261,10 @@ class LocationManager : NSObject, CLLocationManagerDelegate {
     func stopUpdating() {
         log(message: "[LocationManager.stopUpdating] Stopping Location Updates!");
         self.manager.stopMonitoringSignificantLocationChanges();
+    }
+
+    func requestLocation() {
+        self.manager.requestLocation();
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){

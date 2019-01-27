@@ -31,6 +31,13 @@ module.exports = {
           []
         );
     },
+    requestCurrentLocation: function(success, failure) {
+        exec(success || function() {},
+        failure || function() {},
+        'BackgroundLocationServices',
+        'requestCurrentLocation',
+        []);
+    },
     start: function(success, failure, config) {
         exec(success || function() {},
           failure || function() {},
