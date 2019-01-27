@@ -288,14 +288,6 @@ class LocationManager : NSObject, CLLocationManagerDelegate {
         });
     }
 
-    func locationManagerDidPauseLocationUpdates(_ manager: CLLocationManager) {
-        log(message: "Location Manager Paused Location Updates");
-    }
-
-    func locationManagerDidResumeLocationUpdates(_ manager: CLLocationManager) {
-        log(message: "Location Manager Resumed Location Updates");
-    }
-
     func locationManager(_ manager: CLLocationManager, didFailWithError error: NSError) {
         log(message: "LOCATION ERROR: \(error.description)");
 
