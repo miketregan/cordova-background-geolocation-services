@@ -31,26 +31,11 @@ module.exports = {
           []
         );
     },
-    registerForActivityUpdates : function(success, failure, config) {
-        exec(success || function() {},
-          failure || function() {},
-          'BackgroundLocationServices',
-          'registerForActivityUpdates',
-          []
-        );
-    },
     start: function(success, failure, config) {
         exec(success || function() {},
           failure || function() {},
           'BackgroundLocationServices',
           'start',
-          []);
-    },
-    startAggressiveTracking: function(success, failure) {
-        exec(success || function() {},
-          failure || function() {},
-          'BackgroundLocationServices',
-          'startAggressiveTracking',
           []);
     },
     stop: function(success, failure, config) {
