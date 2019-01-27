@@ -288,15 +288,15 @@ class LocationManager : NSObject, CLLocationManagerDelegate {
         });
     }
 
-    private func locationManagerDidPauseLocationUpdates(manager: CLLocationManager) {
+    func locationManagerDidPauseLocationUpdates(manager: CLLocationManager) {
         log(message: "Location Manager Paused Location Updates");
     }
 
-    private func locationManagerDidResumeLocationUpdates(manager: CLLocationManager) {
+    func locationManagerDidResumeLocationUpdates(manager: CLLocationManager) {
         log(message: "Location Manager Resumed Location Updates");
     }
 
-    private func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         log(message: "LOCATION ERROR: \(error.description)");
 
         locationCommandDelegate?.run(inBackground: {
@@ -310,7 +310,7 @@ class LocationManager : NSObject, CLLocationManagerDelegate {
 
 
     }
-    private func locationManager(manager: CLLocationManager, didFinishDeferredUpdatesWithError error: NSError?) {
+    func locationManager(manager: CLLocationManager, didFinishDeferredUpdatesWithError error: NSError?) {
         log(message: "Location Manager FAILED deferred \(error!.description)");
     }
 
