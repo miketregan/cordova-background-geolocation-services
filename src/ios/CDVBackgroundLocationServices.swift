@@ -244,9 +244,6 @@ class LocationManager : NSObject, CLLocationManagerDelegate {
     func startUpdating() {
         self.manager.delegate = self;
 
-        self.manager.desiredAccuracy = self.lowPowerMode ? kCLLocationAccuracyThreeKilometers : desiredAccuracy;
-        self.manager.distanceFilter = self.lowPowerMode ? 10.0 : distanceFilter;
-
         self.manager.startMonitoringSignificantLocationChanges();
 
         log(message: "Starting Location Updates!");
@@ -260,9 +257,9 @@ class LocationManager : NSObject, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
         let lastLocation = locations.last!;
 
-        let latitude = lastLocation!.coordinate.latitude;
-        let longitude = lastLocation!.coordinate.longitude;
-        let accuracy = lastLocation!.horizontalAccuracy;
+        let latitude = lastLocation.coordinate.latitude;
+        let longitude = lastLocation.coordinate.longitude;
+        let accuracy = lastLocation.horizontalAccuracy;
         var msg = "Got Location Update:  { \(latitude) - \(longitude) }  Accuracy: \(accuracy)";
 
         log(message: msg);
@@ -270,7 +267,7 @@ class LocationManager : NSObject, CLLocationManagerDelegate {
 
         locationCommandDelegate?.run(inBackground: {
              var result:CDVPluginResult?;
-            let loc = self.locationToDict(loc: lastLocation!) as [NSObject: AnyObject];
+            let loc = self.locationToDict(loc: lastLocation) as [NSObject: AnyObject];
 
                 result = CDVPluginResult(status: CDVCommandStatus_OK, messageAs:loc);
                 result!.setKeepCallbackAs(true);
