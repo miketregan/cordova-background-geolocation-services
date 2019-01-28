@@ -15,6 +15,7 @@ public class Constants {
   public static final String STOP_RECORDING  = P_NAME + "STOP_RECORDING";
   public static final String START_RECORDING = P_NAME + "START_RECORDING";
   public static final String CHANGE_AGGRESSIVE = P_NAME + "CHANGE_AGGRESSIVE";
+  public static final String REQUEST_CURRENT_LOCATION = P_NAME + "REQUEST_CURRENT_LOCATION";
   public static final String STOP_GEOFENCES = P_NAME + "STOP_GEOFENCES";
   public static final String CALLBACK_LOCATION_UPDATE = P_NAME + "CALLBACK_LOCATION_UPDATE";
   public static final String CALLBACK_ACTIVITY_UPDATE = P_NAME + "CALLBACK_ACTIVITY_UPDATE";

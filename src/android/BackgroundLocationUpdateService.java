@@ -151,6 +151,7 @@ public class BackgroundLocationUpdateService
         registerReceiver(startRecordingReceiver, new IntentFilter(Constants.START_RECORDING));
         registerReceiver(stopRecordingReceiver, new IntentFilter(Constants.STOP_RECORDING));
         registerReceiver(startAggressiveReceiver, new IntentFilter(Constants.CHANGE_AGGRESSIVE));
+        registerReceiver(requestCurrentLocationReceiver, new IntentFilter(Constants.REQUEST_CURRENT_LOCATION));
 
         // Location criteria
         criteria = new Criteria();
@@ -261,6 +262,14 @@ public class BackgroundLocationUpdateService
         @Override
         public void onReceive(Context context, Intent intent) {
             setStartAggressiveTrackingOn();
+        }
+    };
+
+    //Receivers for setting the plugin to a certain state
+    private BroadcastReceiver requestCurrentLocationReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            //setStartAggressiveTrackingOn();
         }
     };
 
@@ -526,6 +535,25 @@ public class BackgroundLocationUpdateService
                 .addOnConnectionFailedListener(this)
                 .build();
         locationClientAPI.connect();
+    }
+
+    private void getLastLocation() {
+        if (locationClientAPI == null) {
+            connectToPlayAPI();
+        }
+        else if (!locationClientAPI.isConnected()) {
+            locationClientAPI.connect();
+        }
+        Location location = LocationServices.FusedLocationApi.getLastLocation(locationClientAPI);
+        if (location != null) {
+            // Go ahead and cache, push to server
+            lastLocation = location;
+
+            //This is all for setting the callback for android which currently does not work
+            Intent mIntent = new Intent(Constants.CALLBACK_LOCATION_UPDATE);
+            mIntent.putExtras(createLocationBundle(location));
+            getApplicationContext().sendBroadcast(mIntent);   
+        }
     }
 
     private void attachRecorder() {

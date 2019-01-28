@@ -38,6 +38,7 @@ public class BackgroundLocationServicesPlugin extends CordovaPlugin {
     public static final String ACTION_CONFIGURE = "configure";
     public static final String ACTION_SET_CONFIG = "setConfig";
     public static final String ACTION_AGGRESSIVE_TRACKING = "startAggressiveTracking";
+    public static final String ACTION_REQUEST_CURRENT_LOCATION = "requestCurrentLocation";
     public static final String ACTION_GET_VERSION = "getVersion";
     public static final String ACTION_REGISTER_FOR_LOCATION_UPDATES = "registerForLocationUpdates";
     public static final String ACTION_REGISTER_FOR_ACTIVITY_UPDATES = "registerForActivityUpdates";
@@ -273,6 +274,15 @@ public class BackgroundLocationServicesPlugin extends CordovaPlugin {
                 callbackContext.success();
             } else {
                 callbackContext.error("Tracking not enabled, need to start tracking before starting aggressive tracking");
+            }
+        }
+        } else if(ACTION_REQUEST_CURRENT_LOCATION.equalsIgnoreCase(action)) {
+            result = true;
+            if(isEnabled) {
+                this.cordova.getActivity().sendBroadcast(new Intent(Constants.REQUEST_CURRENT_LOCATION));
+                callbackContext.success();
+            } else {
+                callbackContext.error("Tracking not enabled, need to start tracking before requesting current location");
             }
         }
 
