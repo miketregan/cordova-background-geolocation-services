@@ -275,7 +275,6 @@ public class BackgroundLocationServicesPlugin extends CordovaPlugin {
             } else {
                 callbackContext.error("Tracking not enabled, need to start tracking before starting aggressive tracking");
             }
-        }
         } else if(ACTION_REQUEST_CURRENT_LOCATION.equalsIgnoreCase(action)) {
             result = true;
             if(isEnabled) {
