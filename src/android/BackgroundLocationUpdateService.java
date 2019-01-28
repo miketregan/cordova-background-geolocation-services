@@ -269,7 +269,7 @@ public class BackgroundLocationUpdateService
     private BroadcastReceiver requestCurrentLocationReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            //setStartAggressiveTrackingOn();
+            getLastLocation();
         }
     };
 
