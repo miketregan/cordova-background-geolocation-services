@@ -12,7 +12,7 @@ module.exports = {
             debug               = config.debug || false,
             notificationTitle   = config.notificationTitle || "Background tracking",
             notificationText    = config.notificationText  || "ENABLED",
-            activityType        = config.activityType || "AutomotiveNavigation",
+            activityType        = config.activityType || "other",
             useActivityDetection = config.useActivityDetection || false,
             activitiesInterval =  config.activitiesInterval || 1000;
 
