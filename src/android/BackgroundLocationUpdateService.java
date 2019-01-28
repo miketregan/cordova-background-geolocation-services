@@ -538,6 +538,7 @@ public class BackgroundLocationUpdateService
     }
 
     private void getLastLocation() {
+         Log.i(TAG, "getLastLocation");
         if (locationClientAPI == null) {
             connectToPlayAPI();
         }
@@ -546,6 +547,7 @@ public class BackgroundLocationUpdateService
         }
         Location location = LocationServices.FusedLocationApi.getLastLocation(locationClientAPI);
         if (location != null) {
+            Log.i(TAG, "getLastLocation - received location");
             // Go ahead and cache, push to server
             lastLocation = location;
 
@@ -553,6 +555,9 @@ public class BackgroundLocationUpdateService
             Intent mIntent = new Intent(Constants.CALLBACK_LOCATION_UPDATE);
             mIntent.putExtras(createLocationBundle(location));
             getApplicationContext().sendBroadcast(mIntent);   
+        }
+        else {
+            Log.i(TAG, "getLastLocation - location was null");
         }
     }
 
