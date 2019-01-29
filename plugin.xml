@@ -58,7 +58,7 @@
         <hook type="after_platform_add" src="hooks/add_swift_support.js"/>
         
         <preference name="LOCATION_ALWAYS_USAGE_DESCRIPTION" default="Capture location for accurate boat show location selection" />
-        <config-file target="*-Info.plist" parent="NSLocationAlwaysUsageDescription">
+        <config-file target="*-Info.plist" parent="NSLocationAlwaysAndWhenInUseUsageDescription">
             <string>$LOCATION_ALWAYS_USAGE_DESCRIPTION</string>
         </config-file>
 
