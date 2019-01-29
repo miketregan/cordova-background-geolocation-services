@@ -15,9 +15,9 @@ let TAG = "[LocationServices]";
 let PLUGIN_VERSION = "1.0";
 
 func log(message: String){
-    if(debug == true) {
+    //if(debug == true) {
         NSLog("%@ - %@", TAG, message)
-    }
+    //}
 }
 
 var locationManager = LocationManager();
