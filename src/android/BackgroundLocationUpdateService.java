@@ -63,6 +63,8 @@ import android.graphics.BitmapFactory;
 import android.util.DisplayMetrics;
 import android.content.res.Resources;
 
+import android.app.NotificationChannel;
+import android.graphics.Color;
 
 import com.google.android.gms.location.ActivityRecognition;
 import com.google.android.gms.location.DetectedActivity;
@@ -117,6 +119,7 @@ public class BackgroundLocationUpdateService
 
     private ConnectivityManager connectivityManager;
     private NotificationManager notificationManager;
+    private NotificationChannel notificationChannel;
 
     private LocationRequest locationRequest;
 
@@ -137,6 +140,12 @@ public class BackgroundLocationUpdateService
         toneGenerator           = new ToneGenerator(AudioManager.STREAM_NOTIFICATION, 100);
         notificationManager     = (NotificationManager)this.getSystemService(Context.NOTIFICATION_SERVICE);
         connectivityManager     = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        notificationChannel = new NotificationChannel("com.bbg.boatshow", "BackgroundLocationUpdateService", NotificationManager.IMPORTANCE_NONE);
+        notificationChannel.setLightColor(Color.BLUE);
+        notificationChannel.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
+        notificationManager.createNotificationChannel(notificationChannel);
+
 
         // Location Update PI
         Intent locationUpdateIntent = new Intent(Constants.LOCATION_UPDATE);
@@ -188,7 +197,7 @@ public class BackgroundLocationUpdateService
 
             Context context = getApplicationContext();
 
-            Notification.Builder builder = new Notification.Builder(this);
+            Notification.Builder builder = new Notification.Builder(this, "com.bbg.boatshow");
             builder.setContentTitle(notificationTitle);
             builder.setContentText(notificationText);
             builder.setSmallIcon(context.getApplicationInfo().icon);
