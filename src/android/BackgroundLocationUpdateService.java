@@ -81,6 +81,8 @@ public class BackgroundLocationUpdateService
         implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     private static final String TAG = "BackgroundLocationUpdateService";
+    private static final String DEFAULT_NOTIFICATION_CHANNEL_ID = "com.bbg.boatshow";
+    private static final String DEFAULT_NOTIFICATION_CHANNEL_NAME = "BackgroundLocationUpdateService";
 
     private Location lastLocation;
     private DetectedActivity lastActivity;
@@ -141,11 +143,13 @@ public class BackgroundLocationUpdateService
         notificationManager     = (NotificationManager)this.getSystemService(Context.NOTIFICATION_SERVICE);
         connectivityManager     = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
 
-        notificationChannel = new NotificationChannel("com.bbg.boatshow", "BackgroundLocationUpdateService", NotificationManager.IMPORTANCE_NONE);
-        notificationChannel.setLightColor(Color.BLUE);
-        notificationChannel.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
-        notificationManager.createNotificationChannel(notificationChannel);
-
+        // If we don't specify our own channel it will crash
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            notificationChannel = new NotificationChannel(DEFAULT_NOTIFICATION_CHANNEL_ID, DEFAULT_NOTIFICATION_CHANNEL_NAME, NotificationManager.IMPORTANCE_NONE);
+            notificationChannel.setLightColor(Color.BLUE);
+            notificationChannel.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
+            notificationManager.createNotificationChannel(notificationChannel);
+        }
 
         // Location Update PI
         Intent locationUpdateIntent = new Intent(Constants.LOCATION_UPDATE);
@@ -197,7 +201,9 @@ public class BackgroundLocationUpdateService
 
             Context context = getApplicationContext();
 
-            Notification.Builder builder = new Notification.Builder(this, "com.bbg.boatshow");
+            Notification.Builder builder = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O ?
+                new Notification.Builder(this, DEFAULT_NOTIFICATION_CHANNEL_ID) :
+                new Notification.Builder(this);
             builder.setContentTitle(notificationTitle);
             builder.setContentText(notificationText);
             builder.setSmallIcon(context.getApplicationInfo().icon);
