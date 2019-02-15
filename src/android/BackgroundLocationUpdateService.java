@@ -698,6 +698,7 @@ public class BackgroundLocationUpdateService
             unregisterReceiver(startRecordingReceiver);
             unregisterReceiver(stopRecordingReceiver);
             unregisterReceiver(detectedActivitiesReceiver);
+            unregisterReceiver(startAggressiveReceiver);
             unregisterReceiver(requestCurrentLocationReceiver);
         } catch(IllegalArgumentException e) {
                Log.e(TAG, "Error: Could not unregister receiver", e);
